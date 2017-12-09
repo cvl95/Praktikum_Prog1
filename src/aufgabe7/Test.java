@@ -17,14 +17,13 @@ public class Test {
 //		array=HideInfo.deleteVocals(array);
 //		CharArrayOps.printArr(array);
 		array=Crypto.encryptCeasar(array, 6);
-		CharArrayOps.printArr(array);
-		array=Crypto.encryptCeasar(array, -6);
-		CharArrayOps.printArr(array);
+		System.out.println("Encrypt Ceasar:");CharArrayOps.printArr(array);
+		array=Crypto.decryptCeasar(array, 6);
+		System.out.println("Decrypt Ceasar:");CharArrayOps.printArr(array);
 		Crypto.encryptBijective(array, Crypto.arrayInitializer());
-		CharArrayOps.printArr(array);
+		System.out.println("Encrypt Blockchiffre:");CharArrayOps.printArr(array);
 		Crypto.decryptBijective(array, Crypto.arrayInitializer());
-		System.out.println("Decrypt:");
-		CharArrayOps.printArr(array);
+		System.out.println("Decrypt Blockchiffre:");CharArrayOps.printArr(array);
 	}
 
 }
