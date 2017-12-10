@@ -4,7 +4,7 @@ public class Test {
 	public static void main(String args[]) {
 		
 		char[] array=CharArrayOps.readInArr();
-		//char[] message=CharArrayOps.readInArr();
+//		char[] message=CharArrayOps.readInArr();
 //		CharArrayOps.printArr(array);
 //		CharArrayOps.printArr(message);
 //		
