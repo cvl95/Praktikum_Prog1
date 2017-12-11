@@ -46,5 +46,6 @@ public class A {
 		System.out.print("Nullstelle für x3 - 24 x2 + 59 x + 420: "+ simpleZeroRec(-10000,10000,0));
 
 	}
+	
 
 }
