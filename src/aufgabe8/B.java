@@ -26,17 +26,20 @@ public class B {
       return value;
    }
    public static int expPowerRecMod(int a, int n) {
-      counter++;
+      
       if(n==0) 
          return 1;
       if(n==1)
          return a;
       if(n%2==0) {
          a=expPowerRecMod(a,n/2);
+         counter++;
          return (a*a);
       }
-      else
+      else {
+    	 counter++;
          return a*expPowerRecMod(a,n-1);
+      }
       
    }
    public static void main(String args[]) {
