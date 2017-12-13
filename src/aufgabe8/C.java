@@ -14,7 +14,7 @@ public class C {
 	}
 	
 	public static void main(String args[]) {
-		print(6);
+		print(5);
 	}
 
 }

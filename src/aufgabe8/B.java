@@ -13,12 +13,7 @@ public class B {
    }
    public static int expPowerIter(int a, int n) {
       
-      int value=1;
-      if(n==0) 
-         return 1;
-      if(n==1)
-         return a;
-     
+      int value=1;     
       for(int i=0;i<n;i++) {
          value=value*a;
          counter++;

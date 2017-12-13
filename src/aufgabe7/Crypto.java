@@ -21,7 +21,7 @@ public class Crypto {
       }
       return array;
    }
-   public static char[] decryptCeasar (char[] array, int key){
+   public static char[] decryptCeasar (char[] array, int key){//Sollte encrypt mit modifiziertem Schlüssel aufrufen
 	   
 	      for(int i=0;i<array.length;i++) {
 	          int character = (int) array[i];

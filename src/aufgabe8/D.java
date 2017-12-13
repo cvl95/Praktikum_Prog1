@@ -85,17 +85,17 @@ public class D {
    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		System.out.println(isPrime(2));
-//		System.out.println(isPrime(3));
-//		System.out.println(isPrime(4));
-//		System.out.println(isPrime(13));
-//		System.out.println(isPrime(256));
-//		System.out.println(isPrime(19));
-//		System.out.println(isPrime(109));
-//		System.out.println(isPrime(271));
-//		printArr(findPrimes(271));
-//		timeForFindPrimesOpt(20,2386);
-//		timeForFindPrimesOpt(24);
+		System.out.println(isPrime(2));
+		System.out.println(isPrime(3));
+		System.out.println(isPrime(4));
+		System.out.println(isPrime(13));
+		System.out.println(isPrime(256));
+		System.out.println(isPrime(19));
+		System.out.println(isPrime(109));
+		System.out.println(isPrime(271));
+		printArr(findPrimes(271));
+		timeForFindPrimesOpt(20,2386);
+		timeForFindPrimesOpt(24);
 		timeForFindPrimes(20,2386);
 		timeForFindPrimes(24);
 		

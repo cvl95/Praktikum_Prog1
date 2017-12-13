@@ -10,8 +10,9 @@ public class A {
 	}
 	
 	public static int simpleZero(int lower, int upper) {
-		int zero=1, middle=0, count=0;
-		while(zero!=middle) {
+		int epsilon=1, count=0;
+		int middle=lower+upper/2;
+		while(epsilon<=middle&count<1000) {
 			if(f(middle)>middle||f(middle)<middle) {
 				if(f(middle)>middle)
 					upper=middle;
@@ -20,17 +21,17 @@ public class A {
 			}			
 			middle=(Math.abs(lower)+upper)/2+lower;
 			if(f(middle)==0) 	
-				zero=middle;
+				epsilon=middle;
 			count++;
 		}
 		System.out.println("Schleifendurchläufe: "+ count);
-		return zero;
+		return epsilon;
 		
 	}
 	public static int simpleZeroRec(int lower, int upper,int count) {
 		int middle=(Math.abs(lower)+upper)/2+lower;
-		while(f(middle)!=0) {
-			if(f(middle)>middle)
+		while(f(middle)!=0&count<2000) {
+			if(f(middle)>0)
 				return simpleZeroRec(lower, middle, count+1);
 			else
 				return simpleZeroRec(middle, upper, count+1);
