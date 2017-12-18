@@ -2,22 +2,26 @@ package aufgabe9;
 
 
 public class Car  {
-	   private float x;
-	   private int speedState,fuelState,watchState;
-	   private final int maxSpeed,maxFuel,cubicCap;
-	   private final int[] fuelConsumption=new int[20];
+	   private float x,y;
+	   private int lastTime,startTime;
+	   private int speedState,fuelState;
+	   private final int maxSpeed,maxFuel;
+	   private final double cubicCap;
+	   private final double[] fuelConsumption=new double[80];
 	   private boolean motorState;
 	   
-	   public Car(int speed,int fuel,int cap){
+	   public Car(int speed,int fuel,double cap){
 		   maxSpeed=speed;
 		   maxFuel=fuel;
 		   cubicCap=cap;
 		   for(int i=0;i<fuelConsumption.length;i++)
-			   fuelConsumption[i]=(int)Math.pow(i, cubicCap)/100;
+			   fuelConsumption[i]=Math.pow(i, cubicCap)/1000000;
 		   speedState=0;
+		   lastTime=(int) (System.nanoTime()/Math.pow(10,9));
+		   startTime=lastTime;
 		   fuelState=0;
-		   watchState=0;
 		   motorState=false;
+		   y=50;
 	   }
 	   public Car(Car c){//(copy constructor) kopiert Modelltyp
 		   maxSpeed=c.maxSpeed;
@@ -25,54 +29,75 @@ public class Car  {
 		   cubicCap=c.cubicCap;
 		   speedState=0;
 		   fuelState=0;
-		   watchState=0;
+		   lastTime=(int) (System.nanoTime()/Math.pow(10,9));
 		   motorState=false;
+		   y=c.y;
 	   }
 
 
 	    
 	   public void setEngine() {
+	      
 		   motorState= !motorState;
+		   updateState();
 	   }
 	   public void setSpeed(int chosenSpeed) {
 		   if(motorState==true&chosenSpeed<=maxSpeed) {
 			   speedState=chosenSpeed;
+			   updateState();
 		   }
 	   }
 	   public void refuel(int volume) {
-		   if(fuelState+volume<=maxFuel)
+//		   if(fuelState+volume<=maxFuel)
 			   fuelState=fuelState+volume;
-		   else
-			   fuelState=maxFuel;
+//		   else
+//			   fuelState=maxFuel;
+            updateState();
 	   }
-	   public void tick() {
-		   watchState++;
-		   updateState();
+	   public void changeLane() {
+	      if(y==50)
+	         y=100;
+	      else
+	         y=50;
 	   }
+//	   public void tick() {
+//		   watchState++;
+//		   updateState();
+//	   }
 	   public void updateState() {
+	      int newtime=(int) (System.nanoTime()/Math.pow(10,9))-lastTime;
 		   float x0=x;
-		   x=x+speedState*1;
-		   while(fuelState>0) {
-			   fuelState=(int) (fuelState-(fuelConsumption[speedState]*(x-x0)));
+		   
+		   lastTime=(int) (System.nanoTime()/Math.pow(10,9));
+		   if(fuelState>0) {
+		      x=x+speedState*(newtime);
+			   fuelState=(int) (fuelState-(fuelConsumption[speedState]*(x-x0)));			   
 		   }
+		      
 		   if(fuelState==0&motorState==true) {
 			   setEngine();
 			   speedState=0;
 		   }
+		   if(fuelState<0)
+		      fuelState=0;
+		   
 		   
 		   
 	   }
 	   public String toString() {
-		   return ("Motor läuft: "+motorState+"\nMomentangeschwindigkeit in m/s: "+speedState+"\nTankfüllstand in l:"+fuelState+"\nUhrzeit: "+watchState);
+		   return ("Motor läuft: "+motorState+"\nMomentangeschwindigkeit in m/s: "+speedState+"\nTankfüllstand in l:"+fuelState+"\nUhrzeit: "+(lastTime-startTime)+"\n"+"Strecke: ");
 	   }
+	   
 	   	   
 	   
 	   public float getX()  {
-	      return x++; 
+	      updateState();
+	      return x;
+
 	   }
 	    
 	   public float getY()  {
-	      return 50;
+	      return y;
 	   }
 	    
 	    
@@ -95,15 +120,15 @@ public class Car  {
 	   public float getSpeed() {
 		return speedState;
 	   }
-	   public static void main() {
+	   public static void main(String[] args) {
+
 		   Car ferrari=new Car(80,70,2);
 		   ferrari.setEngine();
+		   ferrari .refuel(50);
 		   ferrari.setSpeed(60);
+		   ferrari.updateState();
 		   System.out.print(ferrari.toString());
-		   for(int i=0;i<9000;i++)
-		   {
-			   ferrari.tick();
-		   }
+		   ferrari.updateState();
 		   System.out.print(ferrari.toString());
 	   }
 

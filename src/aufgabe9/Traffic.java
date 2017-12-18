@@ -48,7 +48,7 @@ class DisplayArea extends JPanel  {
         // get current location of the car and convert meters into pixels (factor 8)
         int x = (int) (car.getX()*8);
 		x %= d.width;
-        int y = (int) car.getY();
+        int y = (int) (car.getY());
         
         // now paint the car
         g.fillOval(x, y, 10, 10);  
