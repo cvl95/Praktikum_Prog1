@@ -84,7 +84,7 @@ class DisplayArea extends JPanel  {
 		float maxFuel = car.getFuelTankCapacity(); 
 		g.drawRect(90,150,(int)(maxFuel*scaleFactor),10);  
 		g.setColor(Color.red);
-		float fuel = car.getFuel(); 
+		float fuel = (float) car.getFuel(); 
 		if (fuel < 0) {
 		    g.drawString("negative value",90,160);
 		} else if (fuel > maxFuel) {
@@ -107,7 +107,7 @@ class Displayer extends Thread {
         // the animation loop 
         while (true) {  
            panel.repaint(); // display a new animation frame
-           Traffic.waitAWhile(20);
+           Traffic.waitAWhile(50);
         }
     }
 }

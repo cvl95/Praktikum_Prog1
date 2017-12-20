@@ -13,8 +13,8 @@ public class A {
 		int epsilon=1, count=0;
 		int middle=lower+upper/2;
 		while(epsilon<=middle&count<1000) {
-			if(f(middle)>middle||f(middle)<middle) {
-				if(f(middle)>middle)
+			if(f(middle)>0||f(middle)<0) {
+				if(f(middle)>0)
 					upper=middle;
 				else
 					lower=middle;

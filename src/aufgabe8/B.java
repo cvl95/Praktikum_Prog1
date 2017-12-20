@@ -20,7 +20,7 @@ public class B {
       }
       return value;
    }
-   public static int expPowerRecMod(int a, int n) {
+   public static int expPowerRecMod(int a, int n) {//z.B. 2^10=2^5*2^5     2^5=2*2^4      2^4=2^2*2^2    2^2=2*2
       
       if(n==0) 
          return 1;
