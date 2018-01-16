@@ -4,7 +4,44 @@ import java.util.Scanner;
 
 public class Queue {
    private Paesant first, between, last;
-   public void push(String name) {
+   
+   private int iLast=0;
+   Paesant[] queue = new Paesant[30];
+   
+   
+   public void pushArr(String name) {// Push Array
+      
+      queue[iLast]= new Paesant(name, null);
+      iLast++;
+   }
+   
+   public Paesant popArr() {// Pop Array
+      
+      Paesant out=queue[0];
+      for(int i=0;i<iLast-1;i++) {
+         queue[i]=queue[i+1];
+      }
+      queue[iLast-1]=null;
+      iLast--;
+      return out;
+   }
+   
+   public String toStringArr() {
+      String out="";
+      for(int i=0;i<iLast;i++) {
+         if(queue[i]!=null) {
+            out+=queue[i].name; 
+         }
+         if(queue[i+1]!=null) {
+            out+=", ";
+         }
+      }
+     
+      return out;
+   }
+   
+   
+   public void pushLL(String name) {// Push Verkettete Liste
      if(first==null) {
         first = new Paesant(name, null);
      }
@@ -21,7 +58,7 @@ public class Queue {
      }
         
    }
-   public Paesant top() {
+   public Paesant topLL() {//Top Verkettete Liste
       if(first!=null) {
          return first;
       }
@@ -30,7 +67,8 @@ public class Queue {
          return null;
       }
    }
-   public Paesant pop() {
+   
+   public Paesant popLL() {// Pop Verkettete Liste
       Paesant out;
       if(first!=null) {
          out=first;
@@ -42,11 +80,15 @@ public class Queue {
          return null;
       }
    }
-   public String tostring() {
+   
+   public String tostringLL() {// to String Verkettete Liste
       Paesant lnk=first;
       String queue = "";
       while(lnk!=null) {
-         queue+=lnk.name+", ";
+         queue+=lnk.name;
+         if(lnk.next!=null) {
+            queue+=", ";
+         }
          lnk=lnk.next;
       }
       return queue;
